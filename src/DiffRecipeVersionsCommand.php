@@ -52,26 +52,16 @@ class DiffRecipeVersionsCommand extends Command
 
 ## How to test these changes in your application
 
- 1. Define the `SYMFONY_ENDPOINT` environment variable:
+ 1. Update the Shopware flex endpoint in your `composer.json` to {$endpoint}.
+
     ```sh
-    # On Unix-like (BSD, Linux and macOS)
-    export SYMFONY_ENDPOINT={$endpoint}
-    # On Windows
-    SET SYMFONY_ENDPOINT={$endpoint}
+    # When jq is installed
+    jq '.extra.symfony.endpoint[0] |= "{$endpoint}"' composer.json > composer.tmp && mv composer.tmp composer.json
     ```
 
  2. Install the package(s) related to this recipe:
     ```sh
-    composer req 'symfony/flex:^1.16'
     composer req {$requires}
-    ```
-
- 3. Don't forget to unset the `SYMFONY_ENDPOINT` environment variable when done:
-    ```sh
-    # On Unix-like (BSD, Linux and macOS)
-    unset SYMFONY_ENDPOINT
-    # On Windows
-    SET SYMFONY_ENDPOINT=
     ```
 
 EOMD;
