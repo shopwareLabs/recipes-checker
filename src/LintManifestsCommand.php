@@ -66,9 +66,6 @@ class LintManifestsCommand extends Command
 
             if (!isset($data['aliases'])) {
                 // no-op
-            } elseif ($input->getOption('contrib')) {
-                $output->writeln(sprintf('::error file=%s::Aliases not supported in the contrib repository', $manifest));
-                $exit = 1;
             } else {
                 foreach ($data['aliases'] as $alias) {
                     if (\in_array($aliases, ['lock', 'nothing', 'mirrors', ''], true)) {
