@@ -52,11 +52,21 @@ class DiffRecipeVersionsCommand extends Command
 
 ## How to test these changes in your application
 
- 1. Update the Shopware flex endpoint in your `composer.json` to {$endpoint}.
+ 1. Add the Shopware flex endpoint in your `composer.json` to {$endpoint}.
 
     ```sh
     # When jq is installed
-    jq '.extra.symfony.endpoint[0] |= "{$endpoint}"' composer.json > composer.tmp && mv composer.tmp composer.json
+    jq '.extra.symfony.endpoint |= [ "{$endpoint}" ] + .' composer.json > composer.tmp && mv composer.tmp composer.json
+    ```
+    
+    or manually
+    
+    ```json
+    "endpoint": [
+        "{$endpoint}",
+        "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
+        "flex://defaults"
+    ]
     ```
 
  2. Install the package(s) related to this recipe:
