@@ -25,6 +25,10 @@ class LintPackagesCommand extends Command
         $packages = [];
 
         foreach (glob('*/*') as $package) {
+            if (str_starts_with($package, 'store.shopware.com/')) {
+                continue;
+            }
+
             $packages[] = [false, $package, $client->request('GET', "https://repo.packagist.org/p2/{$package}.json")];
         }
 
