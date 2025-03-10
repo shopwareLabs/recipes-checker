@@ -67,6 +67,10 @@ class DiffRecipeVersionsCommand extends Command
         "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
         "flex://defaults"
     ]
+    # On Unix-like (BSD, Linux and macOS)
+    export SYMFONY_ENDPOINT={$endpoint}
+    # On Windows
+    SET SYMFONY_ENDPOINT={$endpoint}
     ```
 
  2. Install the package(s) related to this recipe:
